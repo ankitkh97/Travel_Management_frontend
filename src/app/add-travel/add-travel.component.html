@@ -1,0 +1,90 @@
+<h3>Add New Journey</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div [hidden]="submitted" style="width: 400px">
+      <form [formGroup]="travelSaveForm" (ngSubmit)="saveTravel()">
+        <div class="form-group">
+          <label for="name">Traveller Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Enter Traveller Name"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="TravellerName.touched && TravellerName.invalid"
+            style="margin-top: 5px"
+          >
+            <span *ngIf="TravellerName.errors.required"
+              >Traveller Name is Required</span
+            >
+            <span *ngIf="TravellerName.errors.minlength">
+              MinLength Error
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="source">Source Location</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="source"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Enter Source Location"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="TravellerSource.touched && TravellerSource.invalid"
+            style="margin-top: 5px"
+          >
+            <span *ngIf="TravellerSource.errors.required"
+              >Source is Required</span
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="startDate">Journey Start Date</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="startDate"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Enter Start Date"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="TravellerStartDate.touched && TravellerStartDate.invalid"
+            style="margin-top: 5px"
+          >
+            <span *ngIf="TravellerStartDate.errors.required"
+              >Date is Required</span
+            >
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div [hidden]="!submitted">
+      <h4>Journey Added SuccessFully!</h4>
+      <button (click)="addTravelForm()" class="btn btn-primary">
+        Add New Journey
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
