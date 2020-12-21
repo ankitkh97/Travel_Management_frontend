@@ -1,5 +1,7 @@
 .login-wrapper {
-  margin: 20rem auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
   width: 20rem;
 }
 

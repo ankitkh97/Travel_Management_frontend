@@ -1,95 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable,Subject } from "rxjs";  
-import { TravelService } from '../travel.service';
-import { Traveller } from '../traveller';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TravelService } from '../service/travel.service';
+import { Traveller } from '../shared/traveller';
+
+
 
 @Component({
-  selector: 'app-update-travel',
+  selector: 'app-update',
   templateUrl: './update-travel.component.html',
   styleUrls: ['./update-travel.component.css']
 })
 export class UpdateTravelComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};  
-  dtTrigger: Subject<any>= new Subject(); 
-  
-  constructor( private travelService:TravelService) { }
-  isUpDated: boolean = false;
-  
-  journeys : Traveller[] = [];
-  journey : Traveller = new Traveller();
-  deleteMessage=false;  
-  journeylist: any;  
-  isupdated = false; 
-  travellerName : String = 'Ankit';
-
-
+  travel: Traveller;
+  updateForm:any;
+  submission:boolean=false;
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+      private travelService: TravelService) {
+        this.travel=new Traveller();
+       }
 
   ngOnInit(): void {
-    this.isUpDated = false;
-    this.dtOptions = {  
-      pageLength: 6,  
-      stateSave:true,  
-      lengthMenu:[[6, 16, 20, -1], [6, 16, 20, "All"]],  
-      processing: true  
-    };  
-    this.travelService.getTravellerList().subscribe(
-      data => {
-        this.journeys = data;
-      this.dtTrigger.next();
-      }
-    )
+  }
+  onSubmit(updateForm:any) {
+    const id=+this.route.snapshot.params['id'];
+    this.travelService.updateTravel(this.travel,id).subscribe(_result => {
+      this.submission=true;
+      this.updateForm=updateForm;
+      this.updateForm.reset();
+    },(error: any) => console.log(error));
+    
   }
 
-  updateJourney(id: number){  
-    
-    this.travelService.getTravellerById(id) 
-      .subscribe(  
-      data => {  
-          this.journeylist=data,
-          console.log(this.journeylist)
-                 
-       },  
-       error => console.log(error));  
-  
- }  
- 
- journeyupdateform=new FormGroup({  
-  
-    id:new FormControl(),
-   destination:new FormControl(),  
-   endDate:new FormControl()  
- });  
- 
- updateJou(){  
-   this.journey=new Traveller();   
-  this.journey.destination=this.JourneyDestination!.value;  
-  this.journey.endDate=this.JourneyEnddate!.value;  
- 
-    
- 
-  this.travelService.updateTravel(this.journeylist.id,this.journey).subscribe(  
-   data => {       
-     this.isupdated=true;  
-     this.travelService.getTravellerList().subscribe(data =>{  
-       this.journeys =data  
-       })  
-   },  
-   error => console.log(error));    
-  } 
-
-
-  get JourneyDestination(){  
-    return this.journeyupdateform.get('destination');  
-  }  
-  
- 
-  get JourneyEnddate(){  
-    return this.journeyupdateform.get('endDate');  
-  }  
-  
-  changeisUpdate(){  
-    this.isupdated=false;  
-  }  
 }

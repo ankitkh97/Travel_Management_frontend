@@ -1,32 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { SignInData } from '../model/signInData';
-import { AuthenticationService } from '../service/authentication/authentication.service';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 
-
+import { UserService } from '../service/user.service';
+import { User } from '../shared/user';
 @Component({
-  selector: 'cf-login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  // isFormValid = false;
-  // areCredentialsInvalid = false;
+  
 
-  constructor(private authenticationService: AuthenticationService) { }
+  user: User;
+  hasError:boolean=false;
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+      private userService: UserService , private authenticationService : AuthenticationService) { 
+        this.user = new User();
+      }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
-  onSubmit(signInForm: NgForm) {
-
-    console.log(signInForm.value)
-
-    const signInData = new SignInData(signInForm.value.username,signInForm.value.password);
-    this.authenticationService.authenticate(signInData);
-    
-
+  onSubmit() {
+    this.userService.login(this.user).subscribe(_result => {
+      if(_result==true)
+      {
+        this.authenticationService.isAuthenticated = true;
+        this.router.navigate(["home"]);
+      }
+      else{
+        this.hasError=true;
+      }
+    });
   }
 
   

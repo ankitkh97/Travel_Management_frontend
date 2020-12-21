@@ -1,90 +1,236 @@
-<h3>Add New Journey</h3>
-<div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-4">
-    <div [hidden]="submitted" style="width: 400px">
-      <form [formGroup]="travelSaveForm" (ngSubmit)="saveTravel()">
-        <div class="form-group">
-          <label for="name">Traveller Name</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Enter Traveller Name"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="TravellerName.touched && TravellerName.invalid"
-            style="margin-top: 5px"
-          >
-            <span *ngIf="TravellerName.errors.required"
-              >Traveller Name is Required</span
-            >
-            <span *ngIf="TravellerName.errors.minlength">
-              MinLength Error
-            </span>
-          </div>
-        </div>
+<div [hidden]="!submission" class="text-center">
+  <h1 style="margin-top: 20px; margin-bottom: 20px">
+    Journey Added Succesfully!!
+  </h1>
 
-        <div class="form-group">
-          <label for="source">Source Location</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="source"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Enter Source Location"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="TravellerSource.touched && TravellerSource.invalid"
-            style="margin-top: 5px"
-          >
-            <span *ngIf="TravellerSource.errors.required"
-              >Source is Required</span
-            >
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="startDate">Journey Start Date</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="startDate"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Enter Start Date"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="TravellerStartDate.touched && TravellerStartDate.invalid"
-            style="margin-top: 5px"
-          >
-            <span *ngIf="TravellerStartDate.errors.required"
-              >Date is Required</span
-            >
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-    </div>
-  </div>
-  <div class="col-sm-4"></div>
+  <li class="list-inline-item">
+    <button (click)="addJourneyform()" class="btn btn-primary">
+      Add More Journey
+    </button>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/home" class="btn btn-info">Home</a>
+  </li>
 </div>
 <div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-4">
-    <div [hidden]="!submitted">
-      <h4>Journey Added SuccessFully!</h4>
-      <button (click)="addTravelForm()" class="btn btn-primary">
-        Add New Journey
-      </button>
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="card my-5" [hidden]="submission">
+      <div class="card-header bg-secondary text-white">
+        <h2><strong>Travel Form</strong></h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit(travelForm)" #travelForm="ngForm">
+          <div class="form-group">
+            <label for="name"
+              ><h4><strong>Name*</strong></h4></label
+            >
+            <input
+              type="text"
+              [(ngModel)]="travel.name"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+              #name="ngModel"
+            />
+          </div>
+          <div
+            [hidden]="name.dirty || !name.touched"
+            class="alert alert-danger"
+          >
+            Name is required
+          </div>
+          <div class="form-group">
+            <label for="source"
+              ><h4><strong>Source*</strong></h4></label
+            >
+            <select
+              class="form-control"
+              id="source"
+              name="source"
+              [(ngModel)]="travel.source"
+              required
+              #source="ngModel"
+            >
+              <option value="">Select country</option>
+              <option value="Afganistan">Afghanistan</option>
+              <option value="Australia">Australia</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Canada">Canada</option>
+              <option value="Chile">Chile</option>
+              <option value="China">China</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Egypt">Egypt</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Great Britain">Great Britain</option>
+              <option value="Greece">Greece</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="India">India</option>
+              <option value="Iran">Iran</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Japan">Japan</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Netherlands">Netherlands (Holland, Europe)</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Russia">Russia</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Spain">Spain</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syria">Syria</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Turkey">Turkey</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United Arab Erimates">United Arab Emirates</option>
+              <option value="United States of America">
+                United States of America
+              </option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+          </div>
+          <div
+            [hidden]="source.dirty || !source.touched"
+            class="alert alert-danger"
+          >
+            Source is required
+          </div>
+          <div class="form-group">
+            <label for="destination"
+              ><h4><strong>Destination</strong></h4></label
+            >
+            <select
+              class="form-control"
+              id="destination"
+              name="destination"
+              [(ngModel)]="travel.destination"
+              #destination="ngModel"
+            >
+              <option value="">Select country</option>
+              <option value="Afganistan">Afghanistan</option>
+              <option value="Australia">Australia</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Canada">Canada</option>
+              <option value="Chile">Chile</option>
+              <option value="China">China</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Egypt">Egypt</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Great Britain">Great Britain</option>
+              <option value="Greece">Greece</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="India">India</option>
+              <option value="Iran">Iran</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Japan">Japan</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Netherlands">Netherlands (Holland, Europe)</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Russia">Russia</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Spain">Spain</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syria">Syria</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Turkey">Turkey</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United Arab Erimates">United Arab Emirates</option>
+              <option value="United States of America">
+                United States of America
+              </option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="startdate"
+              ><h4><strong>Start Date*</strong></h4></label
+            >
+            <input
+              type="date"
+              [(ngModel)]="travel.startdate"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              placeholder="Journey Start Date"
+              required
+              #startdate="ngModel"
+            />
+          </div>
+          <div
+            [hidden]="startdate.dirty || !startdate.touched"
+            class="alert alert-danger"
+          >
+            Start Date is required
+          </div>
+          <div class="form-group">
+            <label for="enddate"
+              ><h4><strong>End Date</strong></h4></label
+            >
+            <input
+              type="date"
+              [(ngModel)]="travel.enddate"
+              class="form-control"
+              id="enddate"
+              name="enddate"
+              placeholder="End Date"
+              #enddate="ngModel"
+            />
+          </div>
+
+          <li class="list-inline-item">
+            <button
+              type="submit"
+              [disabled]="!travelForm.form.valid"
+              class="btn btn-success"
+            >
+              Submit
+            </button>
+          </li>
+          <li class="list-inline-item">
+            <a routerLink="/home" class="btn btn-danger">Cancel</a>
+          </li>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="col-sm-4"></div>
 </div>

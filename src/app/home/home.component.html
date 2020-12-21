@@ -260,6 +260,15 @@
     width: 1920px;
   }
 
+  .bg {
+    background: url("../../assets/images/pexels-mike-andrei-1271619.jpg");
+    width: 100%;
+    height: 100%;
+
+    background-size: 100% 100%;
+    background-position: top center;
+  }
+
   @media screen and (max-width: 767px) {
     .card-container > *:not(.circle-link),
     .terminal {
@@ -288,8 +297,8 @@
     }
   }
 </style>
-
-<div class="container-fluid">
+<div class="bg"></div>
+<div>
   <div class="content" role="main">
     <div class="card highlight-card card-small">
       <svg
@@ -354,7 +363,7 @@
     </div>
 
     <div class="card-container">
-      <a class="card" rel="noopener" routerLink="/add-travel">
+      <a class="card" rel="noopener" routerLink="/addTravel">
         <svg
           class="material-icons"
           xmlns="http://www.w3.org/2000/svg"
@@ -378,7 +387,7 @@
         </svg>
       </a>
 
-      <a class="card" rel="noopener" routerLink="/view-travel">
+      <a class="card" rel="noopener" routerLink="/viewTravel">
         <span>View Journey</span>
 
         <svg

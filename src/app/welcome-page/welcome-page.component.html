@@ -1,0 +1,53 @@
+<div class="bg">
+  <div style="padding-top: 200px; padding-bottom: 180px">
+    <ul
+      class="nav nav-tabs"
+      id="myTab"
+      role="tablist"
+      style="display: flex; justify-content: center; border-bottom: none"
+    >
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="home-tab"
+          data-toggle="tab"
+          href="#home"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+          >Sign In</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="profile-tab"
+          data-toggle="tab"
+          href="#profile"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+          >Signup</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        <app-login></app-login>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        <app-signup></app-signup>
+      </div>
+    </div>
+  </div>
+</div>

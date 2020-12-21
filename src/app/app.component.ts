@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './service/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,10 @@ import { AuthenticationService } from './service/authentication/authentication.s
 export class AppComponent {
   title = 'TravelManagement';
 
-  constructor(public authenticationService : AuthenticationService){
+  isAuthenticated :boolean = false;
+  constructor(){
 
   }
 
-  logout(){
-    this.authenticationService.logout();
-  }
+  
 }

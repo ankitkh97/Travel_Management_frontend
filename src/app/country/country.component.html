@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="text-right">
+    <li class="list-inline-item">
+      <a routerLink="/home" class="btn btn-secondary btn-lg">Back</a>
+    </li>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>No. Of Days Spent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of country">
+        <td>
+          <h3>{{ c.startDate | date }}</h3>
+        </td>
+        <td>
+          <h3>{{ c.endDate | date }}</h3>
+        </td>
+        <td>
+          <h3>{{ c.differenceInDays }}</h3>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

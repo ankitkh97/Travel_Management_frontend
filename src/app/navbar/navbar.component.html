@@ -1,0 +1,88 @@
+<nav
+  class="navbar navbar-expand navbar-dark bg-dark"
+  *ngIf="authenticationService.isAuthenticated"
+>
+  <ul class="nav navbar-nav">
+    <li class="nav-item" *ngFor="let link of links">
+      <a class="nav-link" [routerLink]="link.path"
+        ><h4 style="color: white">
+          <b>{{ link.title }}</b>
+        </h4></a
+      >
+    </li>
+  </ul>
+
+  <form class="form-inline" (ngSubmit)="onSubmit()" #countryForm="ngForm">
+    <select
+      class="form-control mr-sm-2"
+      id="src"
+      name="name"
+      [(ngModel)]="country.name"
+      required
+      #name="ngModel"
+    >
+      <option value="">Search By Destination</option>
+      <option value="Afganistan">Afghanistan</option>
+      <option value="Australia">Australia</option>
+      <option value="Bahrain">Bahrain</option>
+      <option value="Bangladesh">Bangladesh</option>
+      <option value="Belgium">Belgium</option>
+      <option value="Bhutan">Bhutan</option>
+      <option value="Brazil">Brazil</option>
+      <option value="Cambodia">Cambodia</option>
+      <option value="Canada">Canada</option>
+      <option value="Chile">Chile</option>
+      <option value="China">China</option>
+      <option value="Colombia">Colombia</option>
+      <option value="Cuba">Cuba</option>
+      <option value="Egypt">Egypt</option>
+      <option value="France">France</option>
+      <option value="Germany">Germany</option>
+      <option value="Ghana">Ghana</option>
+      <option value="Great Britain">Great Britain</option>
+      <option value="Greece">Greece</option>
+      <option value="Hong Kong">Hong Kong</option>
+      <option value="Indonesia">Indonesia</option>
+      <option value="India">India</option>
+      <option value="Iran">Iran</option>
+      <option value="Iraq">Iraq</option>
+      <option value="Ireland">Ireland</option>
+      <option value="Israel">Israel</option>
+      <option value="Italy">Italy</option>
+      <option value="Japan">Japan</option>
+      <option value="Mongolia">Mongolia</option>
+      <option value="Myanmar">Myanmar</option>
+      <option value="Nepal">Nepal</option>
+      <option value="Netherlands">Netherlands (Holland, Europe)</option>
+      <option value="Pakistan">Pakistan</option>
+      <option value="Portugal">Portugal</option>
+      <option value="Qatar">Qatar</option>
+      <option value="Russia">Russia</option>
+      <option value="Saudi Arabia">Saudi Arabia</option>
+      <option value="South Africa">South Africa</option>
+      <option value="Spain">Spain</option>
+      <option value="Sri Lanka">Sri Lanka</option>
+      <option value="Sweden">Sweden</option>
+      <option value="Switzerland">Switzerland</option>
+      <option value="Syria">Syria</option>
+      <option value="Thailand">Thailand</option>
+      <option value="Turkey">Turkey</option>
+      <option value="United Kingdom">United Kingdom</option>
+      <option value="United Arab Erimates">United Arab Emirates</option>
+      <option value="United States of America">United States of America</option>
+      <option value="Vietnam">Vietnam</option>
+      <option value="Zimbabwe">Zimbabwe</option>
+    </select>
+    <button type="submit" class="btn btn-info btn-sm">Search</button>
+  </form>
+  <li class="list-inline-item text-white">
+    <h4>
+      <i>Hello, {{ this._userService.username }}</i>
+    </h4>
+  </li>
+  <li class="list-inline-item">
+    <button (click)="_userService.logout()" class="btn btn-danger">
+      Logout
+    </button>
+  </li>
+</nav>

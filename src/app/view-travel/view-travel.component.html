@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="text-right">
+    <li class="list-inline-item">
+      <a routerLink="/home" class="btn btn-secondary btn-lg">Back</a>
+    </li>
+  </div>
+  <div class="alert text-center bg-dark text-white">
+    <h2>Travel History Table</h2>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>TravelId</th>
+        <th>Traveller Name</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let t of travel">
+      <tr>
+        <td>
+          <h5>{{ t.id }}</h5>
+        </td>
+        <td>
+          <h5>{{ t.name }}</h5>
+        </td>
+        <td>
+          <h5>{{ t.source }}</h5>
+        </td>
+        <td>
+          <h5>{{ t.destination }}</h5>
+        </td>
+        <td>
+          <h5 *ngIf="t.startdate != null">
+            {{ t.startdate.valueOf() | date }}
+          </h5>
+        </td>
+        <td>
+          <h5 *ngIf="t.enddate != null">{{ t.enddate.valueOf() | date }}</h5>
+        </td>
+        <td><h5 *ngIf="t.startdate == null"></h5></td>
+        <td><h5 *ngIf="t.enddate == null"></h5></td>
+        <td>
+          <a [routerLink]="['/update', t.id]" class="btn btn-info btn-lg"
+            >Update</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
