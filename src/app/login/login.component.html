@@ -42,6 +42,11 @@
             Password is required
           </div>
         </div>
+        <div class="text-center" [hidden]="!hasError">
+          <i style="color: red">Authentication Failed !</i>
+
+          <p>Please check credentials again.</p>
+        </div>
         <div class="text-center">
           <button
             class="btn btn-md btn-primary"
@@ -56,12 +61,4 @@
       </form>
     </div>
   </div>
-</div>
-<div class="bg-secondary" [hidden]="!hasError">
-  <h2>Authentication Failed:(</h2>
-</div>
-<div class="text-center">
-  <li class="list-inline-item" [hidden]="!hasError">
-    <a routerLink="/" class="btn btn-danger btn-lg">Back</a>
-  </li>
 </div>

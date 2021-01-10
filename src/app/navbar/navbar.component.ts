@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   country: CountryName;
   links = [
-    { path: '/home', title: 'Travel High', color: '#ffcccb' },
+    
     { path: '/addTravel', title: 'Plan Your Journey', color: 'white' },
     {path:'/viewTravel',title:'View Journeys', color: 'white'},    
 ];

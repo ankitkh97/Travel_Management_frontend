@@ -1,6 +1,6 @@
 <div [hidden]="!submission" class="text-center">
   <h1 style="margin-top: 20px; margin-bottom: 20px">
-    Journey Added Succesfully!!
+    <i> Journey added succesfully!</i>
   </h1>
 
   <li class="list-inline-item">
@@ -214,6 +214,7 @@
               name="enddate"
               placeholder="End Date"
               #enddate="ngModel"
+              onchange="checkDate()"
             />
           </div>
 

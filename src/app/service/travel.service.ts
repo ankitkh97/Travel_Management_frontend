@@ -25,7 +25,7 @@ export class TravelService {
 
   public addUserJourney(traveller : Traveller) {
 console.log(traveller)
-    return this.http.post(`http://localhost:8080/username/${this._userServcie.username}/addUserJourney`,traveller);
+    return this.http.post(`http://localhost:7070/username/${this._userServcie.username}/addUserJourney`,traveller);
   }
 
   public updateTravel(traveller:Traveller,id:Number)

@@ -34,6 +34,17 @@ export class AddTravelComponent implements OnInit {
     
   }
   
+  // checkDate(){
+    
+  //     let enddate = document.getElementById("enddate");
+  //     let startdate = document.getElementById("startdate")!;
+        
+  //     if (new Date enddate.getTime() <= ToDate.getTime()) {
+  //         alert("The Date must be Bigger or Equal to today date");
+  //         return false;
+  //     }
+  //     return true;
+  // }
   addJourneyform()
   {
     this.travelForm.reset();
